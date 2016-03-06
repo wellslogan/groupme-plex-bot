@@ -3,13 +3,13 @@ var config = require("../config.js");
 
 function processMessage(msg, name) {
     var keyword = config.bot.keyword;
-    if (msg == "@zachaltneu6 cool" || "@zaltneu6 cool") {
+    if (msg === "@zachaltneu6 cool" || msg === "@zaltneu6 cool") {
         postToGroup("", [{
             "type": "image",
             "url": "https://i.imgur.com/5eMBhRC.jpg"
         }]);
     }
-    else if (msg.length > keyword.length && msg.substring(0, keyword.length) == keyword) {
+    else if (msg.length > keyword.length && msg.substring(0, keyword.length) === keyword) {
         callPlexApi(msg.substring(keyword.length + 1, msg.length), function(result) {
             postToGroup(result);
         });
