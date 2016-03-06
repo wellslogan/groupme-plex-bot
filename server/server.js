@@ -16,11 +16,13 @@ app.get('/', function(req, res) {
     } else {
         res.send("No results found in Plex library");
     }
+    res.end();
 
 });
 
 app.post('/', function(req, res) {
     bot.processMessage(req.body.text, req.body.name);
+    res.end();
 });
 
 app.listen(config.port);
