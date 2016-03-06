@@ -22,4 +22,4 @@ app.post('/', function(req, res) {
     bot.processMessage(req.body.text, req.body.name);
 });
 
-app.listen(3000);
+app.listen(config.port);
