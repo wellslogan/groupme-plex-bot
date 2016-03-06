@@ -5,7 +5,7 @@ var _ = require('underscore');
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
-var config = require("./config");
+var config = require("../config.js");
 
 var app = express();
 
@@ -44,6 +44,8 @@ postToGroup = function(msg) {
             "text": msg
         }
     };
+
+    console.log(msg);
 
     request(options, function(error, response) {
         if (error || response.statusCode != 200) {
