@@ -54,12 +54,13 @@ function callPlexApi(query, callback) {
 
 function processPlexResults(data) {
     var count = data["_children"].length;
-    if (count > 0 && data["_children"][0]["title"] != "Local Network") {
+    if (count == 4) {
+        return "No results found.\n";
+    } else {
+        data = data.splice(0, count - 4);
         var firstTitle = data["_children"][0]["title"];
         var firstYear = data["_children"][0]["year"];
-        return count + ' result(s) found. Top result was "'+ firstTitle + '" (' + firstYear + ').\n';
-    } else {
-        return "No results found.\n"
+        return count - 4 + ' result(s) found. Top result was "'+ firstTitle + '" (' + firstYear + ').\n';
     }
 }
 
