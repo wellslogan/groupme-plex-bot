@@ -3,14 +3,20 @@ var config = require("../config.js");
 
 function processMessage(msg, name) {
     var keyword = config.bot.keyword;
-    if (msg.length > keyword.length && msg.substring(0, keyword.length) == keyword) {
+    if (msg == "@zachaltneu6 cool" || "@zaltneu6 cool") {
+        postToGroup("", [{
+            "type": "image",
+            "url": "https://i.imgur.com/5eMBhRC.jpg"
+        }]);
+    }
+    else if (msg.length > keyword.length && msg.substring(0, keyword.length) == keyword) {
         callPlexApi(msg.substring(keyword.length + 1, msg.length), function(result) {
             postToGroup(result);
         });
     }
 }
 
-function postToGroup(msg) {
+function postToGroup(msg, attachments) {
     console.log("posting " + msg);
     var options = {
         url: "https://api.groupme.com/v3/bots/post",
@@ -18,7 +24,8 @@ function postToGroup(msg) {
         json: true,
         body: {
             "bot_id": config.bot.id,
-            "text": msg
+            "text": msg,
+            "attachments": attachments
         }
     };
 
