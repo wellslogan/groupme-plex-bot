@@ -5,6 +5,7 @@ var _ = require('underscore');
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
+var config = require("./config");
 
 var app = express();
 
@@ -25,7 +26,7 @@ app.post('/plex', function(req, res) {
 });
 
 processMessage = function(msg, name) {
-    var keyword = "@plex";
+    var keyword = config.bot.keyword;
     if (msg.length > keyword.length && msg.substring(0, keyword.length + 1) == keyword) {
         var result = callPlexApi(msg.substring(keyword.length));
 
@@ -33,13 +34,13 @@ processMessage = function(msg, name) {
     }
 }
 
-postToGroup = function(msg, botId) {
+postToGroup = function(msg) {
     var options = {
         url: "https://api.groupme.com/v3/bots/post",
         method: "POST",
         json: true,
         body: {
-            "bot_id": botId,
+            "bot_id": config.bot.id,
             "text": msg
         }
     };
@@ -53,10 +54,10 @@ postToGroup = function(msg, botId) {
 
 callPlexApi = function(query) {
     var options = {
-        url: "/search?query=" + query,
+        url: config.plex.baseurl + "/search?query=" + query,
         headers: {
             "Accept": "application/json",
-            "X-Plex-Token": ""
+            "X-Plex-Token": config.plex.token
         },
         json: true
     };
