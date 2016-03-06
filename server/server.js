@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var bot = require('./bot.js');
+var config = require('../config.js');
 
 var app = express();
 
