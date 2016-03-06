@@ -57,9 +57,9 @@ function processPlexResults(data) {
     if (count == 4) {
         return "No results found.\n";
     } else {
-        data = data["_children"].splice(0, count - 4);
-        var firstTitle = data["_children"][0]["title"];
-        var firstYear = data["_children"][0]["year"];
+        var arr = data["_children"].splice(0, count - 4);
+        var firstTitle = arr[0]["title"];
+        var firstYear = arr[0]["year"];
         return count - 4 + ' result(s) found. Top result was "'+ firstTitle + '" (' + firstYear + ').\n';
     }
 }
