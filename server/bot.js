@@ -35,8 +35,6 @@ function postToGroup(msg, attachments) {
         if (error || response.statusCode != 200) {
             console.log(error);
         }
-
-        response.end();
     });
 };
 
@@ -58,7 +56,6 @@ function callPlexApi(query, callback) {
         } else {
             callback("Error: Bad search terms or Plex is down.");
         }
-        response.end();
     });
 };
 
