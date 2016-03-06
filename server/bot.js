@@ -54,7 +54,7 @@ function callPlexApi(query, callback) {
 
 function processPlexResults(data) {
     var count = data["_children"].length;
-    if (count > 0) {
+    if (count > 0 && data["_children"][0]["title"] != "Local Network") {
         var firstTitle = data["_children"][0]["title"];
         var firstYear = data["_children"][0]["year"];
         return count + ' result(s) found. Top result was "'+ firstTitle + '" (' + firstYear + ').\n';
